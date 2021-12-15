@@ -1,26 +1,21 @@
 const getAllCategories = (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
+  res.send("getAllCategories");
 };
 
 const getCategoryById = (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
+  res.send("getCategoryById");
 };
 
 const createNewCategory = (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
+  res.send("createNewCategory");
 };
 
 const updateNewCategory = (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
+  res.send("updateNewCategory");
 };
 
 const deleteCategory = (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
+  res.send("deleteCategory");
 };
 
 module.exports = {

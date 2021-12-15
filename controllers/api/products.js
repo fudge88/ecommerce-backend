@@ -1,12 +1,10 @@
 const getAllProducts = (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
+  res.send("getAllProducts");
 };
 
 // get one product
 const getProductById = (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  res.send("getProductById");
 };
 
 // create new product
@@ -16,7 +14,8 @@ const createProduct = (req, res) => {
         product_name: "Basketball",
         price: 200.00,
         stock: 3,
-        tagIds: [1, 2, 3, 4]
+        tagIds: [1, 2, 3, 4],
+        category_id: 5
       }
     */
   Product.create(req.body)
@@ -84,7 +83,7 @@ const updateProduct = (req, res) => {
 };
 
 const deleteProduct = (req, res) => {
-  // delete one product by its `id` value
+  res.send("deleteProduct");
 };
 
 module.exports = {
