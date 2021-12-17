@@ -6,7 +6,7 @@ const getAllTags = async (req, res) => {
     const data = await Tag.findAll();
     return res.json({ success: true, data });
   } catch (err) {
-    res.json("GET categories", error.message);
+    res.json("GET Tags", error.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
@@ -21,9 +21,9 @@ const getTagById = async (req, res) => {
     }
     return res
       .status(404)
-      .json({ success: false, error: "Category does not exist" });
+      .json({ success: false, error: "Tag does not exist" });
   } catch (err) {
-    logError("GET categories", err.message);
+    logError("GET Tags", err.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
@@ -38,8 +38,20 @@ const updateTag = (req, res) => {
   res.send("updateTag");
 };
 
-const deleteTag = (req, res) => {
-  res.send("deleteTag");
+const deleteTag = async (req, res) => {
+  try {
+    await Tag.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.json({ success: true, data: "Successfully Deleted Tag" });
+  } catch (error) {
+    logError("DELETE Tag", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to send response" });
+  }
 };
 
 module.exports = {

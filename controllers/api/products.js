@@ -6,7 +6,7 @@ const getAllProducts = async (req, res) => {
     const data = await Product.findAll();
     return res.json({ success: true, data });
   } catch (err) {
-    res.json("GET categories", error.message);
+    res.json("GET Products", error.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
@@ -22,9 +22,9 @@ const getProductById = async (req, res) => {
     }
     return res
       .status(404)
-      .json({ success: false, error: "Category does not exist" });
+      .json({ success: false, error: "Product does not exist" });
   } catch (err) {
-    logError("GET categories", err.message);
+    logError("GET Products", err.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
@@ -106,8 +106,20 @@ const updateProduct = (req, res) => {
     });
 };
 
-const deleteProduct = (req, res) => {
-  res.send("deleteProduct");
+const deleteProduct = async (req, res) => {
+  try {
+    await Product.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.json({ success: true, data: "Successfully Deleted Product" });
+  } catch (error) {
+    logError("DELETE Product", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to send response" });
+  }
 };
 
 module.exports = {

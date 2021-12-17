@@ -30,33 +30,44 @@ const getCategoryById = async (req, res) => {
   }
 };
 
-const createNewCategory = (req, res) => {
+const createNewCategory = async (req, res) => {
   try {
-    res.status(200).json(newCategory);
-  } catch (err) {
-    res.json("GET categories", err.message);
+    await Category.create(req.body);
+    return res.json({ success: true, data: "Successfully Created category" });
+  } catch (error) {
+    logError("POST category", error.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
   }
 };
 
-const updateCategory = (req, res) => {
+const updateCategory = async (req, res) => {
   try {
-    res.status(200).json(updateCategoryId);
-  } catch (err) {
-    res.json("GET categories", err.message);
+    await Category.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.json({ success: true, data: "Successfully Update Category" });
+  } catch (error) {
+    logError("UPDATE Category", error.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
   }
 };
 
-const deleteCategory = (req, res) => {
+const deleteCategory = async (req, res) => {
   try {
-    res.status(200).json(deleteCategoryId);
-  } catch (err) {
-    logError("GET categories", err.message);
+    await Category.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.json({ success: true, data: "Successfully Deleted Category" });
+  } catch (error) {
+    logError("DELETE Category", error.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
