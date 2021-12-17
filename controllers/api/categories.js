@@ -15,16 +15,15 @@ const getAllCategories = async (req, res) => {
 
 const getCategoryById = async (req, res) => {
   try {
-    const data = await Category.findByPk(req.params.id, {
-      // include: [
-      //   {
-      //     model: Product,
-      //   },
-      // ],
-    });
-    return res.json({ success: true, data });
+    const data = await Category.findByPk(req.params.id);
+    if (data) {
+      return res.json({ success: true, data });
+    }
+    return res
+      .status(404)
+      .json({ success: false, error: "Category does not exist" });
   } catch (err) {
-    console.log("GET categories", err.message);
+    logError("GET categories", err.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
