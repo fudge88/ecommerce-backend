@@ -1,10 +1,39 @@
-const getAllProducts = (req, res) => {
-  res.send("getAllProducts");
+const { Category, Product, Tag, ProductTag } = require("../../models/index");
+
+const getAllProducts = async (req, res) => {
+  try {
+    const data = await Product.findAll();
+    return res.json({ success: true, data });
+  } catch (err) {
+    res.json("GET categories", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to send response" });
+  }
 };
 
 // get one product
-const getProductById = (req, res) => {
-  res.send("getProductById");
+const getProductById = async (req, res) => {
+  try {
+    const data = await Product.findByPk(req.params.id, {
+      include: [
+        {
+          model: Tag,
+          through: ProductTag,
+        },
+        {
+          model: Category,
+          through: Product,
+        },
+      ],
+    });
+    return res.json({ success: true, data });
+  } catch (err) {
+    res.json("GET categories", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to send response" });
+  }
 };
 
 // create new product
