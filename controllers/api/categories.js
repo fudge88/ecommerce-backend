@@ -1,11 +1,11 @@
-const { Category, Product } = require("../../models/index");
+const { Category, Product } = require("../../models");
 
 const getAllCategories = async (req, res) => {
   try {
     const data = await Category.findAll();
     return res.json({ success: true, data });
   } catch (err) {
-    res.json("GET categories", error.message);
+    res.status(500).json("GET categories", err.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
@@ -18,13 +18,12 @@ const getCategoryById = async (req, res) => {
       include: [
         {
           model: Product,
-          through: Category,
         },
       ],
     });
     return res.json({ success: true, data });
   } catch (err) {
-    res.json("GET categories", error.message);
+    console.log("GET categories", err.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
@@ -33,9 +32,9 @@ const getCategoryById = async (req, res) => {
 
 const createNewCategory = (req, res) => {
   try {
-    res.status(200).json(deleteCategoryId);
+    res.status(200).json(newCategory);
   } catch (err) {
-    res.json("GET categories", error.message);
+    res.json("GET categories", err.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
@@ -46,7 +45,7 @@ const updateCategory = (req, res) => {
   try {
     res.status(200).json(updateCategoryId);
   } catch (err) {
-    res.json("GET categories", error.message);
+    res.json("GET categories", err.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
@@ -57,7 +56,7 @@ const deleteCategory = (req, res) => {
   try {
     res.status(200).json(deleteCategoryId);
   } catch (err) {
-    logError("GET categories", error.message);
+    logError("GET categories", err.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });

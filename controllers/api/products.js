@@ -1,4 +1,4 @@
-const { Category, Product, Tag, ProductTag } = require("../../models/index");
+const { Category, Product, Tag, ProductTag } = require("../../models");
 
 const getAllProducts = async (req, res) => {
   try {
@@ -18,18 +18,16 @@ const getProductById = async (req, res) => {
     const data = await Product.findByPk(req.params.id, {
       include: [
         {
-          model: Tag,
-          through: ProductTag,
+          model: Category,
         },
         {
-          model: Category,
-          through: Product,
+          model: Tag,
         },
       ],
     });
     return res.json({ success: true, data });
   } catch (err) {
-    res.json("GET categories", error.message);
+    console.log("GET categories", err.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });

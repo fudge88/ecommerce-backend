@@ -1,4 +1,4 @@
-const { Category, Product, Tag, ProductTag } = require("../../models/index");
+const { Category, Product, Tag, ProductTag } = require("../../models");
 
 const getAllTags = async (req, res) => {
   try {
@@ -18,17 +18,12 @@ const getTagById = async (req, res) => {
       include: [
         {
           model: Product,
-          through: ProductTag,
-        },
-        {
-          model: Category,
-          through: Product,
         },
       ],
     });
     return res.json({ success: true, data });
   } catch (err) {
-    res.json("GET categories", error.message);
+    console.log("GET categories", err.message);
     return res
       .status(500)
       .json({ success: false, error: "Failed to send response" });
