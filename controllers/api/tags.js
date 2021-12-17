@@ -1,3 +1,4 @@
+const { logError } = require("../../utils/logger");
 const { Category, Product, Tag, ProductTag } = require("../../models");
 
 const getAllTags = async (req, res) => {
