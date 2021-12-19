@@ -2,15 +2,15 @@
 
 A back end for an e-commerce site. This app is configured with a working Express.js API to use Sequelize to interact with a MySQL database.
 
-![portfolio demo](./img/et-demo.gif)
+![portfolio demo](./img/ecom.gif)
 
 ## Summary
 
-An fully functional backend, allowing users to `Create`, `Read`, `Update`, and `Delete` products, categories and tags used to create an organised structure for the database/products.
+An fully functional backend, allowing users to `Create`, `Read`, `Update`, and `Delete` products, categories and tags used to create an organized structure for the database/products.
 
-#### A walk-though video for the app can be viewed [here.](https://drive.google.com/drive/folders/1DLdF3_-PX2UVMxI8HHDnODS5KMSh4j8a?usp=sharing)
+#### A walk-though video for the app can be viewed [here.](https://drive.google.com/drive/folders/1sSUipZilS01jZNuutv9baDyFuByCu-jU?usp=sharing)
 
-![portfolio demo](./img/employeeTracker.png)
+![portfolio demo](./img/wrkbench.gif)
 
 ## User Story
 
@@ -78,7 +78,7 @@ This should start the application, and you will be prompted with questions in th
 - express -npm
 - inquirer - npm
 - mysql2
-- sequalize - npm
+- sequelize - npm
 - dotenv - npm
 
 #### Languages:
@@ -138,6 +138,11 @@ CREATE TABLE category (
   ON DELETE SET NULL
 );
 ```
+
+### Express
+
+Is a node.js web server framework. This framework is built in such a way that it acts as a minimal and flexible Node.js web application framework, providing a robust set of features for building single and multi-page, and hybrid web application. This framework allows for a map like functionality that relates to the steps iterated in a URL.  
+View the demo above to see this in action.
 
 ### References
 
