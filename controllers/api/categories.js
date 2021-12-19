@@ -1,5 +1,5 @@
 const { logError } = require("../../utils/logger");
-const { Category, Product } = require("../../models");
+const { Category } = require("../../models");
 
 const getAllCategories = async (req, res) => {
   try {
