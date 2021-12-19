@@ -70,7 +70,7 @@ npm run start
 
 This should start the application, and you will be prompted with questions in the terminal.
 
-![portfolio demo](./img/employeeTracker1.png)
+![portfolio demo](./img/ecom.gif)
 
 ## Tools Used:
 
