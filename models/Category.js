@@ -2,6 +2,7 @@ const { Model, DataTypes } = require("sequelize");
 
 const sequelize = require("../config/connection.js");
 
+// category class & schema
 class Category extends Model {}
 
 const schema = {

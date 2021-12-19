@@ -1,12 +1,10 @@
-// import important parts of sequelize library
-const { Model, DataTypes } = require("sequelize");
-// import our database connection from config.js
 const sequelize = require("../config/connection");
 
-// Initialize Product model (table) by extending off Sequelize's Model class
+const { Model, DataTypes } = require("sequelize");
+
+// category class & schema
 class Product extends Model {}
 
-// set up fields and rules for Product model
 const schema = {
   id: {
     type: DataTypes.INTEGER,

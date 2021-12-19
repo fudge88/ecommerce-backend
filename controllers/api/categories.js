@@ -1,6 +1,7 @@
 const { logError } = require("../../utils/logger");
 const { Category } = require("../../models");
 
+// get all categories
 const getAllCategories = async (req, res) => {
   try {
     const data = await Category.findAll();
@@ -13,6 +14,7 @@ const getAllCategories = async (req, res) => {
   }
 };
 
+// get category by ID
 const getCategoryById = async (req, res) => {
   try {
     const data = await Category.findByPk(req.params.id);
@@ -30,6 +32,7 @@ const getCategoryById = async (req, res) => {
   }
 };
 
+// create new category
 const createNewCategory = async (req, res) => {
   try {
     await Category.create(req.body);
@@ -42,6 +45,7 @@ const createNewCategory = async (req, res) => {
   }
 };
 
+// update category
 const updateCategory = async (req, res) => {
   try {
     await Category.update(req.body, {
@@ -58,6 +62,7 @@ const updateCategory = async (req, res) => {
   }
 };
 
+// delete category
 const deleteCategory = async (req, res) => {
   try {
     await Category.destroy({

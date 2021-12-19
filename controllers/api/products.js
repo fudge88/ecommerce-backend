@@ -1,6 +1,7 @@
 const { logError } = require("../../utils/logger");
 const { Product, ProductTag } = require("../../models");
 
+// get all products
 const getAllProducts = async (req, res) => {
   try {
     const data = await Product.findAll();
@@ -13,7 +14,7 @@ const getAllProducts = async (req, res) => {
   }
 };
 
-// get one product
+// get product by ID
 const getProductById = async (req, res) => {
   try {
     const data = await Product.findByPk(req.params.id);
@@ -44,7 +45,6 @@ const createProduct = (req, res) => {
     */
   Product.create(req.body)
     .then((product) => {
-      // if there's product tags, we need to create pairings to bulk create in the ProductTag model
       if (req.body.tagIds.length) {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
@@ -54,7 +54,6 @@ const createProduct = (req, res) => {
         });
         return ProductTag.bulkCreate(productTagIdArr);
       }
-      // if no product tags, just respond
       res.status(200).json(product);
     })
     .then((productTagIds) => res.status(200).json(productTagIds))
@@ -81,6 +80,7 @@ const updateProduct = async (req, res) => {
   }
 };
 
+// delete product
 const deleteProduct = async (req, res) => {
   try {
     await Product.destroy({

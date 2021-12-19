@@ -1,6 +1,7 @@
 const { logError } = require("../../utils/logger");
-const { Category, Product, Tag, ProductTag } = require("../../models");
+const { Tag } = require("../../models");
 
+// get all tags
 const getAllTags = async (req, res) => {
   try {
     const data = await Tag.findAll();
@@ -13,6 +14,7 @@ const getAllTags = async (req, res) => {
   }
 };
 
+// get tag by ID function
 const getTagById = async (req, res) => {
   try {
     const data = await Tag.findByPk(req.params.id);
@@ -30,14 +32,37 @@ const getTagById = async (req, res) => {
   }
 };
 
-const createTag = (req, res) => {
-  res.send("createTag");
+// create tag function
+const createTag = async (req, res) => {
+  try {
+    await Tag.create(req.body);
+    return res.json({ success: true, data: "Successfully Created Tag" });
+  } catch (error) {
+    logError("POST Tag", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to send response" });
+  }
 };
 
-const updateTag = (req, res) => {
-  res.send("updateTag");
+// update tag function
+const updateTag = async (req, res) => {
+  try {
+    await Tag.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    return res.json({ success: true, data: "Successfully Update Tag" });
+  } catch (error) {
+    logError("UPDATE Tag", error.message);
+    return res
+      .status(500)
+      .json({ success: false, error: "Failed to send response" });
+  }
 };
 
+// delete tag function
 const deleteTag = async (req, res) => {
   try {
     await Tag.destroy({
